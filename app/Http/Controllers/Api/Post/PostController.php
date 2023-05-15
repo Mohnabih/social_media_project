@@ -73,9 +73,9 @@ class PostController extends AppBaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index_by_user_id(Request $request, User $user)
+    public function profile_posts_by_profileId(Request $request,$profile_id)
     {
-        $data = $this->postRepository->getPostsByProfileId($request, $user);
+        $data = $this->postRepository->getPostsByProfileId($request, $profile_id);
         return $this->sendResponse(
             $data,
             [__('here are all posts!')],

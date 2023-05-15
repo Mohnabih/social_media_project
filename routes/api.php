@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\UserController;
+use App\Http\Controllers\Api\Post\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,12 @@ Route::group(
         Route::post('/login', [AuthController::class, 'login']);
     }
 );
+
+Route::group(['prefix' => 'posts/v1'], function ($router) {
+    Route::get('index', [PostController::class, 'index']);
+    Route::get('show/{id}', [PostController::class, 'show']);
+    Route::get('profile_posts_by_profileId/{id}', [PostController::class, 'index_by_user_id']);
+    Route::post('store', [PostController::class, 'store']);
+    Route::put('update/{id}', [PostController::class, 'update']);
+    Route::get('destroy/{id}', [PostController::class, 'destroy']);
+});
